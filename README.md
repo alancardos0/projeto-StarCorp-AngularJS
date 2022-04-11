@@ -19,9 +19,10 @@ Esse é um projeto feito para uma vaga de emprego na StarCorp.
 
 ### Melhorias Futuras
 
-- [ ] Aprender como  alterar o usuario pelo ID, consumindo a API.
+- [x] Aprender como  alterar os dados de usuario  utilizando o ID, consumindo a API.
 - [ ] Melhorar minhas habilidades em CSS.
 - [ ] Fazer uma página para cadastro de Endereço.
+
 
 
 
