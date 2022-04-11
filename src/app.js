@@ -5,6 +5,8 @@ angular
   .controller("crudCtrl", function ($scope, $http) {
     $scope.form = [];
 
+    $scope.idDasPessoas = [];
+
     $scope.pessoas = [
       {
         nome: "Alan",
@@ -25,11 +27,12 @@ angular
         },
       })
         .then((result) => {
-          var resultadoEmString = JSON.stringify(result.data);
-          alert(resultadoEmString);
+          $scope.pessoas = result.data.data;
+          console.log($scope.pessoas);
         })
         .catch((error) => console.log(error));
     };
+    $scope.pegarPessoasNaApi();
 
     $scope.adicionarClienteNaApi = function (
       nome,
@@ -56,13 +59,13 @@ angular
       })
         .then((res) => {
           console.log(res.data);
+          $scope.pegarPessoasNaApi();
           alert("Pessoa Adicionada ao Banco de Dados com Sucesso!!");
         })
         .catch((error) => {
           console.error(error);
           alert("Ocorreu um erro!");
         });
-
       $scope.pessoas.push({
         nome: nome,
         dataNascimento: dataNascimento,
@@ -89,23 +92,40 @@ angular
       this.celular = "";
     };
 
-    $scope.deletarClienteDaApi = function () {
+    $scope.deletarClienteDaApi = function (pessoaId) {
       $http({
         method: "DELETE",
-        url: `https://www.selida.com.br/avaliacaotecnica/api/Pessoas/48`,
+        url: `https://www.selida.com.br/avaliacaotecnica/api/Pessoas/${pessoaId}`,
         headers: {
           chave: "AED57B57-F588-4AB7-AD02-DD99B49D44AF",
         },
       })
         .then((res) => {
-          console.log(res);
+          var respostaTratada = JSON.stringify(res.data);
+          alert("Pessoa Excluida com Sucesso!!!!");
+          $scope.pegarPessoasNaApi();
         })
         .catch((error) => console.log(error));
 
       $scope.pessoas.splice($scope.pessoas.indexOf($scope.pessoas), 1);
     };
 
+    $scope.selecionarPessoas = function (pessoaId) {
+      $http({
+        method: "GET",
+        url: `https://www.selida.com.br/avaliacaotecnica/api/Pessoas/${pessoaId}`,
+        headers: {
+          chave: "AED57B57-F588-4AB7-AD02-DD99B49D44AF",
+        },
+      })
+        .then((res) => {
+          $scope.pegarPessoasNaApi();
+        })
+        .catch((error) => console.error(error));
+    };
+
     $scope.alterarPessoaNoBancoDeDados = function (
+      pessoaId,
       nome,
       dataNascimento,
       idade,
@@ -115,7 +135,7 @@ angular
     ) {
       $http({
         method: "PUT",
-        url: "https://www.selida.com.br/avaliacaotecnica/api/Pessoas/3",
+        url: `https://www.selida.com.br/avaliacaotecnica/api/Pessoas/`,
         headers: {
           chave: "AED57B57-F588-4AB7-AD02-DD99B49D44AF",
         },
@@ -129,7 +149,9 @@ angular
         },
       })
         .then((res) => {
-          console.log(res);
+          $scope.pegarPessoasNaApi();
+          var respostaTratadaComJson = JSON.stringify(res.data);
+          console.log(respostaTratadaComJson);
           alert("Alteração Realizada com Sucesso!!!!");
         })
         .catch((error) => {

@@ -17,7 +17,7 @@
     <div class="jumbotron" ng-controller="crudCtrl">
       <h3 id="titulo-do-crud">Listagem</h3>
 
-      <table class="table table-striped" id="tabela-edit">
+      <table class="table table-striped">
         <tr>
           <th>Nome</th>
           <th>Data de Nascimento</th>
@@ -36,14 +36,15 @@
           <td>{{pessoa.telefone}}</td>
           <td>{{pessoa.celular}}</td>
           <td>
-         <button type="button" ng-click="selecionarPessoas(nome,dataNascimento,idade,email,telefone,celular)" class="btn btn-warning" data-toggle="modal" data-target="#abrirModal">Editar</button>
+         <button type="button" ng-click="selecionarPessoas(pessoa.pessoaId)" class="btn btn-warning" data-toggle="modal" data-target="#abrirModal">Editar</button>
         </td>
         <td>
             <button type="button" class="btn btn-danger" data-toggle="modal"
-                    data-target="#myModalExcluir" ng-click="deletarClienteDaApi()">Excluir</button>
+                    data-target="#myModalExcluir" ng-click="deletarClienteDaApi(pessoa.pessoaId)">Excluir</button>
         </td>
 
         </tr>
+
       </table>
     
     </hr>
@@ -116,9 +117,9 @@
         <input type="text" class="form-control" ng-model="celular" placeholder="Celular" onfocus="this.value='';" />
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" ng-click="alterarPessoaNoBancoDeDados(nome,dataNascimento,idade,email,telefone,celular)">Salvar</button>
+            <button type="button" class="btn btn-primary" ng-click="alterarPessoaNoBancoDeDados(pessoaId,nome,dataNascimento,idade,email,telefone,celular)">Salvar</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button id="limparDadosApi" ng-click="limparCamposDoInput(nome,dataNascimento,idade,email,telefone,celular)" class="btn btn-secondary btn-danger"> Limpar Input </button>
+            <button id="limparDadosApi" ng-click="limparCamposDoInput(pessoaId,nome,dataNascimento,idade,email,telefone,celular)" class="btn btn-secondary btn-danger"> Limpar Input </button>
           </div>
         </div>
       </div>
