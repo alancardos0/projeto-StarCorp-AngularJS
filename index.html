@@ -71,7 +71,8 @@
     
   
     </hr>
-<!--Botoes para adicionar pessoas e limpar o input e ver quantas pessoas tem cadastradas na API-->
+
+    <!--Botoes para adicionar pessoas e limpar o input e ver quantas pessoas tem cadastradas na API-->
 
       <button
       class="btn btn-primary btn-block"
@@ -82,6 +83,8 @@
       <button id="limparDadosApi" ng-click="limparCamposDoInput(nome,dataNascimento,idade,email,telefone,celular)" class="btn btn-danger btn-block"> Limpar Input </button>
       <button ng-click="pegarPessoasNaApi(nome,dataNascimento,idade,email,telefone,celular)">Pessoas Cadastradas na Api</button>
 
+      <!--Modal do Editar Pessoa que envia diretamente a edição para o Banco de Dados da Api-->
+      
       <div class="modal" tabindex="-1" role="dialog" id="abrirModal">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -92,7 +95,7 @@
               </button>
             </div>
             <div class="modal-body" >
-              <p>Aqui você consegue editar pessoas porém essa edição vai diretamente para API e você tem que colocar o ID do user no codigo para alterar</p>
+              <p>Aqui você consegue editar as pessoas selecionadas!!!</p>
     
            <input type="text" class="form-control" ng-model="nome" placeholder="{{pessoaSelecionadaPeloID.nome}}" />
             <br />
@@ -104,7 +107,7 @@
             onfocus="this.value='';"
           />
           <br />
-          <input type="number" class="form-control" ng-model="idade" value="{{pessoaSelecionadaPeloID.idade}}"  onfocus="this.value='';"/>
+          <input type="number" class="form-control" ng-model="idade" placeholder="{{pessoaSelecionadaPeloID.idade}}"  onfocus="this.value='';"/>
           <br />
           <input type="text" class="form-control" ng-model="email" placeholder="{{pessoaSelecionadaPeloID.email}}" />
           <br />
@@ -122,7 +125,6 @@
       </div>
     </div>
 
-  <!--Modal do Editar Pessoa que envia diretamente a edição para o Banco de Dados da Api-->
 
 
   </body>

@@ -28,11 +28,9 @@ angular
       })
         .then((result) => {
           $scope.pessoas = result.data.data;
-          console.log($scope.pessoas);
         })
         .catch((error) => console.log(error));
     };
-    $scope.pegarPessoasNaApi();
 
     $scope.adicionarClienteNaApi = function (
       nome,
@@ -76,22 +74,6 @@ angular
       });
     };
 
-    $scope.limparCamposDoInput = function (
-      nome,
-      dataNascimento,
-      idade,
-      email,
-      telefone,
-      celular
-    ) {
-      this.nome = "";
-      this.dataNascimento = "";
-      this.idade = "";
-      this.email = "";
-      this.telefone = "";
-      this.celular = "";
-    };
-
     $scope.deletarClienteDaApi = function (pessoaId) {
       $http({
         method: "DELETE",
@@ -119,7 +101,6 @@ angular
         },
       })
         .then((res) => {
-          console.log(res.data.data);
           $scope.pessoaSelecionadaPeloID = {
             pessoaId: res.data.data.pessoaId,
             nome: res.data.data.nome,
@@ -167,5 +148,21 @@ angular
           console.log(error);
           alert("Parece que ocorreu um erro!");
         });
+    };
+
+    $scope.limparCamposDoInput = function (
+      nome,
+      dataNascimento,
+      idade,
+      email,
+      telefone,
+      celular
+    ) {
+      this.nome = "";
+      this.dataNascimento = "";
+      this.idade = "";
+      this.email = "";
+      this.telefone = "";
+      this.celular = "";
     };
   });
