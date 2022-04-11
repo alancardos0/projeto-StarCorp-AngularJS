@@ -1,4 +1,4 @@
-# Projeto StarCorp
+# Projeto StarCorp CRUD
 
 Olá, eu sou o Alan Matheus!
 
