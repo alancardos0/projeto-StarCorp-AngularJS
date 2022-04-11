@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projeto StarCorp</title>
+    <link rel="stylesheet" href="./src/style/style.css" />
+    <link rel="stylesheet" href="./src/style/bootstrap.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="./src/app.js"></script>
+  </head>
+  <body ng-app="projetoStarCorpCrud">
+
+    <div class="jumbotron" ng-controller="crudCtrl">
+      <h3 id="titulo-do-crud">Listagem</h3>
+
+      <table class="table table-striped">
+        <tr>
+          <th>Nome</th>
+          <th>Data de Nascimento</th>
+          <th>Idade</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Celular</th>
+          <th>Editar</th>
+          <th>Excluir</th>
+        </tr>
+        <tr ng-repeat="pessoa in pessoas">
+          <td>{{pessoa.nome}}</td>
+          <td>{{pessoa.dataNascimento}}</td>
+          <td>{{pessoa.idade}}</td>
+          <td>{{pessoa.email}}</td>
+          <td>{{pessoa.telefone}}</td>
+          <td>{{pessoa.celular}}</td>
+          <td>
+         <button type="button" ng-click="selecionarPessoas(nome,dataNascimento,idade,email,telefone,celular)" class="btn btn-warning" data-toggle="modal" data-target="#abrirModal">Editar</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-danger" data-toggle="modal"
+                    data-target="#myModalExcluir" ng-click="deletarClienteDaApi()">Excluir</button>
+        </td>
+
+        </tr>
+      </table>
+    
+    </hr>
+
+    <!---inputs-->
+    
+        <input type="text" class="form-control" ng-model="nome" placeholder="Nome" />
+        <br />
+        <input
+          type="text"
+          class="form-control"
+          ng-model="dataNascimento"
+          placeholder="Data de Nascimento"
+        />
+        <br />
+        <input type="number" class="form-control" ng-model="idade" placeholder="Idade" />
+        <br />
+        <input type="text" class="form-control" ng-model="email" placeholder="Email" />
+        <br />
+        <input type="text" class="form-control" ng-model="telefone" placeholder="Telefone" />
+        <br />
+        <input type="text" class="form-control" ng-model="celular" placeholder="Celular" />
+    
+  
+    </hr>
+
+      <button
+        class="btn btn-primary btn-block"
+        ng-click="adicionarClienteNaApi(nome,dataNascimento,idade,email,telefone,celular)"
+      >
+        Criar Nova Pessoa
+      </button>
+
+    </div>
+
+  
+
+    <div class="modal" tabindex="-1" role="dialog" id="abrirModal" ng-controller="crudCtrl">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Editar Pessoa</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" >
+
+         <input type="text" class="form-control" ng-model="nome" placeholder="Nome" />
+          <br />
+         <input
+          type="text"
+          class="form-control"
+          ng-model="dataNascimento"
+          placeholder="Data de Nascimento"
+        />
+        <br />
+        <input type="number" class="form-control" ng-model="idade" placeholder="Idade" />
+        <br />
+        <input type="text" class="form-control" ng-model="email" placeholder="Email" />
+        <br />
+        <input type="text" class="form-control" ng-model="telefone" placeholder="Telefone" />
+        <br />
+        <input type="text" class="form-control" ng-model="celular" placeholder="Celular" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="alterarPessoaNoBancoDeDados(nome,dataNascimento,idade,email,telefone,celular)">Salvar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
