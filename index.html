@@ -50,22 +50,23 @@
 
     <!---inputs-->
     
-        <input type="text" class="form-control" ng-model="nome" placeholder="Nome" />
+        <input type="text" class="form-control" ng-model="nome" placeholder="Nome"  onfocus="this.value='';" />
         <br />
         <input
-          type="text"
+          type="date"
           class="form-control"
           ng-model="dataNascimento"
           placeholder="Data de Nascimento"
+          onfocus="this.value='';"
         />
         <br />
-        <input type="number" class="form-control" ng-model="idade" placeholder="Idade" />
+        <input type="number" class="form-control" ng-model="idade" placeholder="Idade" onfocus="this.value='';" />
         <br />
-        <input type="text" class="form-control" ng-model="email" placeholder="Email" />
+        <input type="text" class="form-control" ng-model="email" placeholder="Email" onfocus="this.value='';" />
         <br />
-        <input type="text" class="form-control" ng-model="telefone" placeholder="Telefone" />
+        <input type="text" class="form-control" ng-model="telefone" placeholder="Telefone" onfocus="this.value='';" />
         <br />
-        <input type="text" class="form-control" ng-model="celular" placeholder="Celular" />
+        <input type="text" class="form-control" ng-model="celular" placeholder="Celular" onfocus="this.value='';" />
     
   
     </hr>
@@ -76,10 +77,22 @@
       >
         Criar Nova Pessoa
       </button>
+      
 
+      <button ng-click="pegarPessoasNaApi(nome,dataNascimento,idade,email,telefone,celular)">Pessoas Cadastradas na Api</button>
+      <table> 
+        <tr ng-repeat="receberPessoas in receberPessoasDaApi">
+          <td>{{receberPessoas.nome}}</td>
+          <td>{{receberPessoas.dataNascimento}}</td>
+          <td>{{receberPessoas.idade}}</td>
+          <td>{{receberPessoas.email}}</td>
+          <td>{{receberPessoas.telefone}}</td>
+          <td>{{receberPessoas.celular}}</td>
+          </tr>
+      </table>
     </div>
 
-  
+  <!--Modal do Editar Pessoa que envia diretamente a edição para o Banco de Dados da Api-->
 
     <div class="modal" tabindex="-1" role="dialog" id="abrirModal" ng-controller="crudCtrl">
       <div class="modal-dialog" role="document">
@@ -92,22 +105,23 @@
           </div>
           <div class="modal-body" >
 
-         <input type="text" class="form-control" ng-model="nome" placeholder="Nome" />
+         <input type="text" class="form-control" ng-model="nome" placeholder="Nome" onfocus="this.value='';" />
           <br />
          <input
           type="text"
           class="form-control"
           ng-model="dataNascimento"
           placeholder="Data de Nascimento"
+          onfocus="this.value='';"
         />
         <br />
-        <input type="number" class="form-control" ng-model="idade" placeholder="Idade" />
+        <input type="number" class="form-control" ng-model="idade" placeholder="Idade"  onfocus="this.value='';"/>
         <br />
-        <input type="text" class="form-control" ng-model="email" placeholder="Email" />
+        <input type="text" class="form-control" ng-model="email" placeholder="Email" onfocus="this.value='';" />
         <br />
-        <input type="text" class="form-control" ng-model="telefone" placeholder="Telefone" />
+        <input type="text" class="form-control" ng-model="telefone" placeholder="Telefone" onfocus="this.value='';" />
         <br />
-        <input type="text" class="form-control" ng-model="celular" placeholder="Celular" />
+        <input type="text" class="form-control" ng-model="celular" placeholder="Celular" onfocus="this.value='';" />
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" ng-click="alterarPessoaNoBancoDeDados(nome,dataNascimento,idade,email,telefone,celular)">Salvar</button>
