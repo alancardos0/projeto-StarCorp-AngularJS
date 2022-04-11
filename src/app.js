@@ -5,7 +5,7 @@ angular
   .controller("crudCtrl", function ($scope, $http) {
     $scope.form = [];
 
-    $scope.idDasPessoas = [];
+    $scope.pessoaSelecionadaPeloID = {};
 
     $scope.pessoas = [
       {
@@ -119,13 +119,21 @@ angular
         },
       })
         .then((res) => {
-          $scope.pegarPessoasNaApi();
+          console.log(res.data.data);
+          $scope.pessoaSelecionadaPeloID = {
+            pessoaId: res.data.data.pessoaId,
+            nome: res.data.data.nome,
+            dataNascimento: res.data.data.dataNascimento,
+            idade: res.data.data.idade,
+            email: res.data.data.email,
+            telefone: res.data.data.telefone,
+            celular: res.data.data.celular,
+          };
         })
         .catch((error) => console.error(error));
     };
 
     $scope.alterarPessoaNoBancoDeDados = function (
-      pessoaId,
       nome,
       dataNascimento,
       idade,
@@ -135,17 +143,18 @@ angular
     ) {
       $http({
         method: "PUT",
-        url: `https://www.selida.com.br/avaliacaotecnica/api/Pessoas/`,
+        url: `https://www.selida.com.br/avaliacaotecnica/api/Pessoas/${$scope.pessoaSelecionadaPeloID.pessoaId}`,
         headers: {
           chave: "AED57B57-F588-4AB7-AD02-DD99B49D44AF",
         },
         data: {
-          nome: nome,
-          dataNascimento: dataNascimento,
-          idade: idade,
-          email: email,
-          telefone: telefone,
-          celular: celular,
+          nome: nome || $scope.pessoaSelecionadaPeloID.nome,
+          dataNascimento:
+            dataNascimento || $scope.pessoaSelecionadaPeloID.dataNascimento,
+          idade: idade || $scope.pessoaSelecionadaPeloID.idade,
+          email: email || $scope.pessoaSelecionadaPeloID.email,
+          telefone: telefone || $scope.pessoaSelecionadaPeloID.telefone,
+          celular: celular || $scope.pessoaSelecionadaPeloID.celular,
         },
       })
         .then((res) => {

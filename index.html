@@ -82,48 +82,48 @@
       <button id="limparDadosApi" ng-click="limparCamposDoInput(nome,dataNascimento,idade,email,telefone,celular)" class="btn btn-danger btn-block"> Limpar Input </button>
       <button ng-click="pegarPessoasNaApi(nome,dataNascimento,idade,email,telefone,celular)">Pessoas Cadastradas na Api</button>
 
-    </div>
-
-  <!--Modal do Editar Pessoa que envia diretamente a edição para o Banco de Dados da Api-->
-
-    <div class="modal" tabindex="-1" role="dialog" id="abrirModal" ng-controller="crudCtrl">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title">Editar Pessoa</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" >
-            <p>Aqui você consegue editar pessoas porém essa edição vai diretamente para API e você tem que colocar o ID do user no codigo para alterar</p>
-
-         <input type="text" class="form-control" ng-model="nome" placeholder="Nome" onfocus="this.value='';" />
+      <div class="modal" tabindex="-1" role="dialog" id="abrirModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">Editar Pessoa</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" >
+              <p>Aqui você consegue editar pessoas porém essa edição vai diretamente para API e você tem que colocar o ID do user no codigo para alterar</p>
+    
+           <input type="text" class="form-control" ng-model="nome" placeholder="{{pessoaSelecionadaPeloID.nome}}" />
+            <br />
+           <input
+            type="date"
+            class="form-control"
+            ng-model="dataNascimento"
+            placeholder="Data de Nascimento"
+            onfocus="this.value='';"
+          />
           <br />
-         <input
-          type="date"
-          class="form-control"
-          ng-model="dataNascimento"
-          placeholder="Data de Nascimento"
-          onfocus="this.value='';"
-        />
-        <br />
-        <input type="number" class="form-control" ng-model="idade" placeholder="Idade"  onfocus="this.value='';"/>
-        <br />
-        <input type="text" class="form-control" ng-model="email" placeholder="Email" onfocus="this.value='';" />
-        <br />
-        <input type="text" class="form-control" ng-model="telefone" placeholder="Telefone" onfocus="this.value='';" />
-        <br />
-        <input type="text" class="form-control" ng-model="celular" placeholder="Celular" onfocus="this.value='';" />
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" ng-click="alterarPessoaNoBancoDeDados(pessoaId,nome,dataNascimento,idade,email,telefone,celular)">Salvar</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button id="limparDadosApi" ng-click="limparCamposDoInput(pessoaId,nome,dataNascimento,idade,email,telefone,celular)" class="btn btn-secondary btn-danger"> Limpar Input </button>
+          <input type="number" class="form-control" ng-model="idade" value="{{pessoaSelecionadaPeloID.idade}}"  onfocus="this.value='';"/>
+          <br />
+          <input type="text" class="form-control" ng-model="email" placeholder="{{pessoaSelecionadaPeloID.email}}" />
+          <br />
+          <input type="text" class="form-control" ng-model="telefone" placeholder="{{pessoaSelecionadaPeloID.telefone}}" onfocus="this.value='';" />
+          <br />
+          <input type="text" class="form-control" ng-model="celular" placeholder="{{pessoaSelecionadaPeloID.celular}}" onfocus="this.value='';" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" ng-click="alterarPessoaNoBancoDeDados(nome,dataNascimento,idade,email,telefone,celular)">Salvar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              <button id="limparDadosApi" ng-click="limparCamposDoInput(pessoaId,nome,dataNascimento,idade,email,telefone,celular)" class="btn btn-secondary btn-danger"> Limpar Input </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+  <!--Modal do Editar Pessoa que envia diretamente a edição para o Banco de Dados da Api-->
+
 
   </body>
 </html>
