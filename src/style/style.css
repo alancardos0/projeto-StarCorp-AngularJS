@@ -1,12 +1,12 @@
+* {
+  padding: 15px;
+}
+
 .jumbotron {
-  width: 1250px;
+  width: 600px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
-}
-.table {
-  margin-top: 5px;
-  margin-bottom: 20px;
 }
 .form-control {
   margin-bottom: 2px;

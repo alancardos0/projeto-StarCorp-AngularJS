@@ -3,6 +3,8 @@ angular.module("projetoStarCorpCrud", []);
 angular
   .module("projetoStarCorpCrud")
   .controller("crudCtrl", function ($scope, $http) {
+    $scope.form = [];
+
     $scope.pessoas = [
       {
         nome: "Alan",
@@ -71,6 +73,22 @@ angular
       });
     };
 
+    $scope.limparCamposDoInput = function (
+      nome,
+      dataNascimento,
+      idade,
+      email,
+      telefone,
+      celular
+    ) {
+      this.nome = "";
+      this.dataNascimento = "";
+      this.idade = "";
+      this.email = "";
+      this.telefone = "";
+      this.celular = "";
+    };
+
     $scope.deletarClienteDaApi = function () {
       $http({
         method: "DELETE",
@@ -112,9 +130,11 @@ angular
       })
         .then((res) => {
           console.log(res);
+          alert("Alteração Realizada com Sucesso!!!!");
         })
         .catch((error) => {
           console.log(error);
+          alert("Parece que ocorreu um erro!");
         });
     };
   });

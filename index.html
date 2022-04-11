@@ -17,7 +17,7 @@
     <div class="jumbotron" ng-controller="crudCtrl">
       <h3 id="titulo-do-crud">Listagem</h3>
 
-      <table class="table table-striped">
+      <table class="table table-striped" id="tabela-edit">
         <tr>
           <th>Nome</th>
           <th>Data de Nascimento</th>
@@ -70,26 +70,17 @@
     
   
     </hr>
+<!--Botoes para adicionar pessoas e limpar o input e ver quantas pessoas tem cadastradas na API-->
 
       <button
-        class="btn btn-primary btn-block"
+      class="btn btn-primary btn-block"
         ng-click="adicionarClienteNaApi(nome,dataNascimento,idade,email,telefone,celular)"
       >
         Criar Nova Pessoa
       </button>
-      
-
+      <button id="limparDadosApi" ng-click="limparCamposDoInput(nome,dataNascimento,idade,email,telefone,celular)" class="btn btn-danger btn-block"> Limpar Input </button>
       <button ng-click="pegarPessoasNaApi(nome,dataNascimento,idade,email,telefone,celular)">Pessoas Cadastradas na Api</button>
-      <table> 
-        <tr ng-repeat="receberPessoas in receberPessoasDaApi">
-          <td>{{receberPessoas.nome}}</td>
-          <td>{{receberPessoas.dataNascimento}}</td>
-          <td>{{receberPessoas.idade}}</td>
-          <td>{{receberPessoas.email}}</td>
-          <td>{{receberPessoas.telefone}}</td>
-          <td>{{receberPessoas.celular}}</td>
-          </tr>
-      </table>
+
     </div>
 
   <!--Modal do Editar Pessoa que envia diretamente a edição para o Banco de Dados da Api-->
@@ -104,11 +95,12 @@
             </button>
           </div>
           <div class="modal-body" >
+            <p>Aqui você consegue editar pessoas porém essa edição vai diretamente para API e você tem que colocar o ID do user no codigo para alterar</p>
 
          <input type="text" class="form-control" ng-model="nome" placeholder="Nome" onfocus="this.value='';" />
           <br />
          <input
-          type="text"
+          type="date"
           class="form-control"
           ng-model="dataNascimento"
           placeholder="Data de Nascimento"
@@ -126,6 +118,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" ng-click="alterarPessoaNoBancoDeDados(nome,dataNascimento,idade,email,telefone,celular)">Salvar</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button id="limparDadosApi" ng-click="limparCamposDoInput(nome,dataNascimento,idade,email,telefone,celular)" class="btn btn-secondary btn-danger"> Limpar Input </button>
           </div>
         </div>
       </div>
